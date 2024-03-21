@@ -3,19 +3,21 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class FileInfo {
     //Initialize karna badmey
-    private SimpleIntegerProperty index;
-    private SimpleStringProperty name;
-    private SimpleStringProperty url;
-    private SimpleStringProperty status;
+    private SimpleIntegerProperty index = new SimpleIntegerProperty();
+    private SimpleStringProperty name = new SimpleStringProperty();
+    private SimpleStringProperty url = new SimpleStringProperty();
+    private SimpleStringProperty status = new SimpleStringProperty();
     //"Downloading, Starting, Completed"
-    private SimpleStringProperty action;
+    private SimpleStringProperty action = new SimpleStringProperty();
+    private SimpleStringProperty path = new SimpleStringProperty();
 
-    public FileInfo(int index, String name, String url, String status, String action)
+    public FileInfo(int index, String name, String url, String status, String action, String path)
     {
         this.index.set(index);
         this.name.set(name);
         this.url.set(url);
         this.status.set(status);
+        this.path.set(path);
     }
 
     public int getIndex()
@@ -86,5 +88,28 @@ public class FileInfo {
     {
         this.action.set(action);
     }
+
+    public String getPath()
+    {
+        return path.get();
+    }
+
+    public SimpleStringProperty pathProperty()
+    {
+        return path;
+    }
+
+    public void setPath(String path)
+    {
+       this.path.set(path);
+    }
+
+
+
+    @Override 
+    public String toString() {
+        return "FileInfo [index=" + index + ", name=" + name + ", url=" + url + ", status=" + status + ", action=" + action + ", path=" + path + "]";
+    }
+    
         
 }
