@@ -16,6 +16,7 @@ public class FileInfo {
         this.name.set(name);
         this.url.set(url);
         this.status.set(status);
+        this.action.set(action);
         this.path.set(path);
     }
 
