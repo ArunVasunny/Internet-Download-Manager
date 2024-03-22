@@ -65,8 +65,8 @@ public class dmController implements Initializable{
         String path = location.DOWNLOAD_PATH + File.separator+filename;
         FileInfo file = new FileInfo((index+1) +" ", filename, url, status, action, path);
         DownloadThread thread = new DownloadThread(file, this);
-        thread.run();
         this.tableView.getItems().setAll(file);
+        thread.start();
         System.out.println("File Downloaded Successfull6y");
         
     }
