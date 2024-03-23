@@ -22,7 +22,7 @@ public class dmController implements Initializable{
     @FXML
     private TextField urlTextField;
 
-    public int index = 0;
+    public int index = 0; //0
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,9 +63,10 @@ public class dmController implements Initializable{
         String status = "STARTING";
         String action = "OPEN";
         String path = location.DOWNLOAD_PATH + File.separator+filename;
-        FileInfo file = new FileInfo((index+1) +" ", filename, url, status, action, path);
+        FileInfo file = new FileInfo((index+1) +"", filename, url, status, action, path); //1
+        this.index = index + 1; //2
         DownloadThread thread = new DownloadThread(file, this);
-        this.tableView.getItems().setAll(file);
+        this.tableView.getItems().add(Integer.parseInt(file.getIndex()) - 1,file); //2-1 = 1
         thread.start();
         System.out.println("File Downloaded Successfull6y");
         
@@ -73,6 +74,9 @@ public class dmController implements Initializable{
 
     public void updateUI(FileInfo metaFile)
     {
+        FileInfo fileInfo = this.tableView.getItems().get(Integer.parseInt(metaFile.getIndex())-1); //1-1 = 0
+        fileInfo.setStatus(metaFile.getStatus());
+        this.tableView.refresh();
         System.out.println(metaFile);
     }
     
