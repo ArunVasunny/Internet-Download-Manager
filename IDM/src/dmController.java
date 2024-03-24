@@ -68,6 +68,7 @@ public class dmController implements Initializable{
         DownloadThread thread = new DownloadThread(file, this);
         this.tableView.getItems().add(Integer.parseInt(file.getIndex()) - 1,file); //2-1 = 1
         thread.start();
+        this.urlTextField.setText("");
         System.out.println("File Downloaded Successfull6y");
         
     }
