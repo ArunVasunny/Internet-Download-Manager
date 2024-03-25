@@ -7,17 +7,17 @@ public class FileInfo {
     private SimpleStringProperty url = new SimpleStringProperty();
     private SimpleStringProperty status = new SimpleStringProperty();
     //"Downloading, Starting, Completed"
-    private SimpleStringProperty action = new SimpleStringProperty();
+    private SimpleStringProperty size = new SimpleStringProperty();
     private SimpleStringProperty path = new SimpleStringProperty();
     private SimpleStringProperty percent = new SimpleStringProperty();
 
-    public FileInfo(String index, String name, String url, String status, String action, String path, String percent)
+    public FileInfo(String index, String name, String url, String status, String size, String path, String percent)
     {
         this.index.set(index);
         this.name.set(name);
         this.url.set(url);
         this.status.set(status);
-        this.action.set(action);
+        this.size.set(size);
         this.path.set(path);
         this.percent.set(percent);
     }
@@ -76,19 +76,19 @@ public class FileInfo {
         this.status.set(status);
     }
 
-    public String getAction()
+    public String getSize()
     {
-        return action.get();
+        return size.get();
     }
     
-    public SimpleStringProperty actionProperty()
+    public SimpleStringProperty sizeProperty()
     {
-        return action;
+        return size;
     }
 
-    public void setAction(String action)
+    public void setSize(String size)
     {
-        this.action.set(action);
+        this.size.set(size);
     }
 
     public String getPath()
@@ -125,7 +125,7 @@ public class FileInfo {
 
     @Override 
     public String toString() {
-        return "FileInfo [index=" + index + ", name=" + name + ", url=" + url + ", status=" + status + ", action=" + action + ", path=" + path + "percent=" + percent +"]";
+        return "FileInfo [index=" + index + ", name=" + name + ", url=" + url + ", status=" + status + ", size=" + size + ", path=" + path + "percent=" + percent +"]";
     }
     
         

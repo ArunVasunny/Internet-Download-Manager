@@ -1,5 +1,6 @@
 import java.io.File;
 import java.net.URL;
+import java.net.URLConnection;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
@@ -14,8 +15,6 @@ import javafx.scene.control.TextField;
 
 public class dmController implements Initializable{
     
-
-
     @FXML
     private TableView<FileInfo> tableView;
 
@@ -50,9 +49,11 @@ public class dmController implements Initializable{
             return p.getValue().statusProperty();
         });
 
-        TableColumn<FileInfo, String> action = (TableColumn<FileInfo, String>)this.tableView.getColumns().get(4);
-        action.setCellValueFactory(p->{
-            return p.getValue().actionProperty();
+        TableColumn<FileInfo, String> size = (TableColumn<FileInfo, String>)this.tableView.getColumns().get(4);
+        size.setCellValueFactory(p->{
+            SimpleStringProperty simppleStringProperty = new SimpleStringProperty();
+            simppleStringProperty.set(p.getValue().getSize());
+            return simppleStringProperty;
         });
 
         TableColumn<FileInfo,String> percentage = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(5);
@@ -72,9 +73,10 @@ public class dmController implements Initializable{
         String filename = url.substring(url.lastIndexOf("/")+1);
         // System.out.println(filename);
         String status = "STARTING";
-        String action = "OPEN";
+        //SIZE
+        String size = getSizeFromURL(url);
         String path = location.DOWNLOAD_PATH + File.separator+filename;
-        FileInfo file = new FileInfo((index+1) +"", filename, url, status, action, path,"0"); //1
+        FileInfo file = new FileInfo((index+1) +"", filename, url, status, size, path,"0"); //1
         this.index = index + 1; //2
         DownloadThread thread = new DownloadThread(file, this);
         this.tableView.getItems().add(Integer.parseInt(file.getIndex()) - 1,file); //2-1 = 1
@@ -93,5 +95,28 @@ public class dmController implements Initializable{
         this.tableView.refresh();
         System.out.println(metaFile);
     }
-    
+
+    public String getSizeFromURL(String url) {
+        try {
+            URLConnection connection = new URL(url).openConnection();
+            connection.connect();
+            int fileSize = connection.getContentLength();
+            return formatFileSize(fileSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Unknown";
+        }
+    }
+
+    public String formatFileSize(long size)
+    {
+        if (size <= 0)
+        {
+            return "0 B";
+        }
+        final String[] units = new String[]{"B", "KB", "MB", "GB", "TB"};
+        int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
+        return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+    }
+
 }
