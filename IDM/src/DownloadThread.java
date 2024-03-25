@@ -67,14 +67,16 @@ public class DownloadThread extends Thread{
 
                 if(fileSize>0){
                     percent=(byteSum/fileSize * 100);
-                    System.out.println(percent);
+                    // System.out.println(percent);
+                    this.file.setPercent(percent+ "");
+                    this.manager.updateUI(file);
                 }
             }   
 
             fOutputStream.close();
             bInputStream.close();
 
-
+            this.setName(100 + "");
             this.file.setStatus("COMPLETED");
         } catch (Exception e) {
             this.file.setStatus("FAILED");
