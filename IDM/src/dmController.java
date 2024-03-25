@@ -88,7 +88,7 @@ public class dmController implements Initializable{
     {
         FileInfo fileInfo = this.tableView.getItems().get(Integer.parseInt(metaFile.getIndex())-1); //1-1 = 0
         fileInfo.setStatus(metaFile.getStatus());
-        DecimalFormat decimcalFormat = new DecimalFormat("0.00");
+        DecimalFormat decimcalFormat = new DecimalFormat("0.0");
         fileInfo.setPercent(decimcalFormat.format(Double.parseDouble(metaFile.getPercent())));
         this.tableView.refresh();
         System.out.println(metaFile);
