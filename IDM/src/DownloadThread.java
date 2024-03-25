@@ -5,6 +5,7 @@ import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 
 public class DownloadThread extends Thread{
 
@@ -43,7 +44,7 @@ public class DownloadThread extends Thread{
             URL url = new URL(this.file.getUrl());
             URLConnection urlConnection = url.openConnection();
             int fileSize = urlConnection.getContentLength();
-            System.out.println("FileSIze = " +fileSize);
+            // System.out.println("FileSIze = " +fileSize);
 
             int countByte = 0;
             double percent = 0.0;
@@ -86,4 +87,5 @@ public class DownloadThread extends Thread{
         this.manager.updateUI(file);
 
     }   
+
 }
