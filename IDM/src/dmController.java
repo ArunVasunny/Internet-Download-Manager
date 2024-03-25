@@ -1,6 +1,9 @@
 import java.io.File;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
+
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -52,6 +55,14 @@ public class dmController implements Initializable{
             return p.getValue().actionProperty();
         });
 
+        TableColumn<FileInfo,String> percentage = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(5);
+        percentage.setCellValueFactory(p -> {
+            //To display symbol
+            SimpleStringProperty simpleStringProperty = new SimpleStringProperty();
+            simpleStringProperty.set(p.getValue().getPercent() + " %");
+            return simpleStringProperty;
+        });
+
     }
     
     @FXML
@@ -63,13 +74,13 @@ public class dmController implements Initializable{
         String status = "STARTING";
         String action = "OPEN";
         String path = location.DOWNLOAD_PATH + File.separator+filename;
-        FileInfo file = new FileInfo((index+1) +"", filename, url, status, action, path); //1
+        FileInfo file = new FileInfo((index+1) +"", filename, url, status, action, path,"0"); //1
         this.index = index + 1; //2
         DownloadThread thread = new DownloadThread(file, this);
         this.tableView.getItems().add(Integer.parseInt(file.getIndex()) - 1,file); //2-1 = 1
         thread.start();
         this.urlTextField.setText("");
-        System.out.println("File Downloaded Successfull6y");
+        System.out.println("File Downloaded Successfully");
         
     }
 
@@ -77,6 +88,8 @@ public class dmController implements Initializable{
     {
         FileInfo fileInfo = this.tableView.getItems().get(Integer.parseInt(metaFile.getIndex())-1); //1-1 = 0
         fileInfo.setStatus(metaFile.getStatus());
+        DecimalFormat decimcalFormat = new DecimalFormat("0.00");
+        fileInfo.setPercent(decimcalFormat.format(Double.parseDouble(metaFile.getPercent())));
         this.tableView.refresh();
         System.out.println(metaFile);
     }
