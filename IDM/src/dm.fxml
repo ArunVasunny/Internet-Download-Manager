@@ -15,11 +15,12 @@
       <Button fx:id="downloadButton" layoutX="404.0" layoutY="133.0" mnemonicParsing="false" onAction="#downloadButtonClicked" text="Download" />
       <TableView fx:id="tableView" layoutX="-5.0" layoutY="192.0" prefHeight="456.0" prefWidth="856.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
-          <TableColumn prefWidth="101.0" text="S.No" />
-            <TableColumn minWidth="2.0" prefWidth="103.0" text="File Name" />
-            <TableColumn prefWidth="115.0" text="File Url" />
-            <TableColumn prefWidth="137.0" text="Status" />
-            <TableColumn minWidth="0.0" prefWidth="194.0" text="Action" />
+          <TableColumn prefWidth="45.0" text="S.No" />
+            <TableColumn minWidth="2.0" prefWidth="207.0" text="File Name" />
+            <TableColumn prefWidth="191.0" text="File Url" />
+            <TableColumn prefWidth="135.0" text="Status" />
+            <TableColumn minWidth="0.0" prefWidth="114.0" text="Action" />
+            <TableColumn prefWidth="163.0" text="Progress" />
         </columns>
       </TableView>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="856.0">
