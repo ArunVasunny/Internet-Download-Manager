@@ -1,4 +1,7 @@
+import java.io.BufferedInputStream;
+import java.io.FileOutputStream;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,7 +37,44 @@ public class DownloadThread extends Thread{
 
         //Download logic
         try {
-            Files.copy(new URL(this.file.getUrl()).openStream(), Paths.get(this.file.getPath()));
+            // We cant retrieve Download infomation using this method so ill implement an alternate method
+            // Files.copy(new URL(this.file.getUrl()).openStream(), Paths.get(this.file.getPath()));
+
+            URL url = new URL(this.file.getUrl());
+            URLConnection urlConnection = url.openConnection();
+            int fileSize = urlConnection.getContentLength();
+            System.out.println("FileSIze = " +fileSize);
+
+            int countByte = 0;
+            double percent = 0.0;
+            double byteSum = 0.0;
+            BufferedInputStream bInputStream = new BufferedInputStream(url.openStream());
+
+            FileOutputStream fOutputStream = new FileOutputStream(this.file.getPath());
+            byte data[] = new byte[1024];
+
+            while (true) {
+                
+                countByte = bInputStream.read(data,0,1024);
+                if(countByte == -1)
+                {
+                    break;
+                }
+
+                fOutputStream.write(data,0,countByte);
+
+                byteSum = byteSum+countByte;
+
+                if(fileSize>0){
+                    percent=(byteSum/fileSize * 100);
+                    System.out.println(percent);
+                }
+            }   
+
+            fOutputStream.close();
+            bInputStream.close();
+
+
             this.file.setStatus("COMPLETED");
         } catch (Exception e) {
             this.file.setStatus("FAILED");
