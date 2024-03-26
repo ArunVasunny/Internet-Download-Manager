@@ -30,6 +30,16 @@ public class DownloadThread extends Thread{
         paused = true;
     }
 
+    public void resumeDownload()
+    {
+        paused = false;
+        synchronized(this)
+        {
+            notify(); // this will tell to resume
+            file.setStatus("DOWNLOADING");
+        }
+    }
+
     @Override
     public void run()
     {
@@ -72,6 +82,7 @@ public class DownloadThread extends Thread{
                 {
                     synchronized(this)
                     {
+                        file.setStatus("PAUSED");
                         try {
                             wait();
                         } 
