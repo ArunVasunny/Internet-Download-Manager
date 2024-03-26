@@ -9,21 +9,22 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dmController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="975.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dmController">
    <children>
-      <TextField fx:id="urlTextField" layoutX="110.0" layoutY="72.0" prefHeight="25.0" prefWidth="659.0" promptText="URL" />
-      <Button fx:id="downloadButton" layoutX="404.0" layoutY="133.0" mnemonicParsing="false" onAction="#downloadButtonClicked" text="Download" />
+      <TextField fx:id="urlTextField" layoutX="125.0" layoutY="71.0" prefHeight="25.0" prefWidth="726.0" promptText="URL" />
+      <Button fx:id="downloadButton" layoutX="452.0" layoutY="132.0" mnemonicParsing="false" onAction="#downloadButtonClicked" text="Download" />
       <TableView fx:id="tableView" layoutX="-5.0" layoutY="192.0" prefHeight="456.0" prefWidth="856.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
           <TableColumn prefWidth="45.0" text="S.No" />
-            <TableColumn minWidth="2.0" prefWidth="207.0" text="File Name" />
-            <TableColumn prefWidth="191.0" text="File Url" />
-            <TableColumn prefWidth="135.0" text="Status" />
-            <TableColumn minWidth="0.0" prefWidth="114.0" text="Size" />
-            <TableColumn prefWidth="163.0" text="Progress" />
+            <TableColumn minWidth="2.0" prefWidth="258.0" text="File Name" />
+            <TableColumn prefWidth="222.0" text="File Url" />
+            <TableColumn prefWidth="140.0" text="Status" />
+            <TableColumn minWidth="0.0" prefWidth="104.0" text="Size" />
+            <TableColumn prefWidth="86.0" text="Progress" />
+            <TableColumn prefWidth="119.0" text="Speed" />
         </columns>
       </TableView>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="856.0">
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="975.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
