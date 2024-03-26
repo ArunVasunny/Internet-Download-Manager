@@ -3,7 +3,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -105,6 +104,20 @@ public class dmController implements Initializable{
             currentDownloadThread = selectedFile.getDownloadThread();
             if (currentDownloadThread != null) {
                 currentDownloadThread.pauseDownload();
+            }
+        }
+    }
+
+    @FXML
+    void resumeButtonClicked(ActionEvent event)
+    {
+        FileInfo selectedFile = tableView.getSelectionModel().getSelectedItem();
+        if(selectedFile != null)
+        {
+            currentDownloadThread = selectedFile.getDownloadThread();
+            if(currentDownloadThread != null)
+            {
+                currentDownloadThread.resumeDownload();
             }
         }
     }
