@@ -64,6 +64,11 @@ public class dmController implements Initializable{
             return simpleStringProperty;
         });
 
+        TableColumn<FileInfo,String> speed = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(6);
+        speed.setCellValueFactory(p -> {
+            return p.getValue().speedProperty();
+        });
+
     }
     
     @FXML
@@ -76,7 +81,8 @@ public class dmController implements Initializable{
         //SIZE
         String size = getSizeFromURL(url);
         String path = location.DOWNLOAD_PATH + File.separator+filename;
-        FileInfo file = new FileInfo((index+1) +"", filename, url, status, size, path,"0"); //1
+        String speed = "Calculating ...";
+        FileInfo file = new FileInfo((index+1) +"", filename, url, status, size, path,"0", speed); //1
         this.index = index + 1; //2
         DownloadThread thread = new DownloadThread(file, this);
         this.tableView.getItems().add(Integer.parseInt(file.getIndex()) - 1,file); //2-1 = 1

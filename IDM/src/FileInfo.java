@@ -10,8 +10,10 @@ public class FileInfo {
     private SimpleStringProperty size = new SimpleStringProperty();
     private SimpleStringProperty path = new SimpleStringProperty();
     private SimpleStringProperty percent = new SimpleStringProperty();
+    private SimpleStringProperty speed = new SimpleStringProperty();
 
-    public FileInfo(String index, String name, String url, String status, String size, String path, String percent)
+
+    public FileInfo(String index, String name, String url, String status, String size, String path, String percent, String speed)
     {
         this.index.set(index);
         this.name.set(name);
@@ -20,6 +22,7 @@ public class FileInfo {
         this.size.set(size);
         this.path.set(path);
         this.percent.set(percent);
+        this.speed.set(speed);
     }
 
     public String getIndex()
@@ -121,11 +124,26 @@ public class FileInfo {
         this.percent.set(percent);
     }
 
+    public String getSpeed()
+    {
+        return speed.get();
+    }
+
+    public SimpleStringProperty speedProperty()
+    {
+        return speed;
+    }
+
+    public void setSpeed(String speed)
+    {
+        this.speed.set(speed);
+    }
+
 
 
     @Override 
     public String toString() {
-        return "FileInfo [index=" + index + ", name=" + name + ", url=" + url + ", status=" + status + ", size=" + size + ", path=" + path + "percent=" + percent +"]";
+        return "FileInfo [index=" + index + ", name=" + name + ", url=" + url + ", status=" + status + ", size=" + size + ", path=" + path + "percent=" + percent + "Speed= " + speed +"]";
     }
     
         
