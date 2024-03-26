@@ -9,13 +9,19 @@ import java.text.DecimalFormat;
 
 public class DownloadThread extends Thread{
 
+    private static final long UPDATE_INTERVAL_MS = 1000;
     private FileInfo file;
     dmController manager;
+    private long lastUpdateTime;
+    private long bytesDownloaded;
 
     public DownloadThread(FileInfo file, dmController manager)
     {
         this.file = file;
         this.manager = manager;
+        this.lastUpdateTime = System.currentTimeMillis();
+        this.bytesDownloaded = 0;
+        
     }
 
     @Override
@@ -65,6 +71,18 @@ public class DownloadThread extends Thread{
                 fOutputStream.write(data,0,countByte);
 
                 byteSum = byteSum+countByte;
+                bytesDownloaded = bytesDownloaded+countByte;
+
+                long currentTime = System.currentTimeMillis();
+                long elapsedTime = currentTime - lastUpdateTime;
+                if (elapsedTime >= UPDATE_INTERVAL_MS) {
+                    double downloadSpeed = (double) bytesDownloaded / elapsedTime * 1000; // bytes per second
+                    file.setSpeed(formatSpeed(downloadSpeed));
+                    // this.manager.updateUI(file); 
+                    // Reset values for next interval
+                    lastUpdateTime = currentTime;
+                    bytesDownloaded = 0;
+                }
 
                 if(fileSize>0){
                     percent=(byteSum/fileSize * 100);
@@ -79,13 +97,25 @@ public class DownloadThread extends Thread{
 
             this.setName(100 + "");
             this.file.setStatus("COMPLETED");
+
         } catch (Exception e) {
             this.file.setStatus("FAILED");
             e.printStackTrace();
         }
 
+        this.file.setSpeed("0");
         this.manager.updateUI(file);
 
-    }   
+    }  
+    
+    private String formatSpeed(double speed) {
+        if (speed < 1024) {
+            return String.format("%.2f B/s", speed);
+        } else if (speed < 1024 * 1024) {
+            return String.format("%.2f KB/s", speed / 1024);
+        } else {
+            return String.format("%.2f MB/s", speed / (1024 * 1024));
+        }
+    }
 
 }
