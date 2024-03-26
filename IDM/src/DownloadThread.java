@@ -14,6 +14,7 @@ public class DownloadThread extends Thread{
     dmController manager;
     private long lastUpdateTime;
     private long bytesDownloaded;
+    private volatile boolean paused = false;
 
     public DownloadThread(FileInfo file, dmController manager)
     {
@@ -22,6 +23,21 @@ public class DownloadThread extends Thread{
         this.lastUpdateTime = System.currentTimeMillis();
         this.bytesDownloaded = 0;
         
+    }
+
+    public void pauseDownload()
+    {
+        paused = true;
+    }
+
+    public void resumeDownload()
+    {
+        paused = false;
+        synchronized(this)
+        {
+            notify(); // this will tell to resume
+            file.setStatus("DOWNLOADING");
+        }
     }
 
     @Override
@@ -61,6 +77,20 @@ public class DownloadThread extends Thread{
             byte data[] = new byte[1024];
 
             while (true) {
+
+                if(paused)
+                {
+                    synchronized(this)
+                    {
+                        file.setStatus("PAUSED");
+                        try {
+                            wait();
+                        } 
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
                 
                 countByte = bInputStream.read(data,0,1024);
                 if(countByte == -1)

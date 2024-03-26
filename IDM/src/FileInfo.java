@@ -12,6 +12,8 @@ public class FileInfo {
     private SimpleStringProperty percent = new SimpleStringProperty();
     private SimpleStringProperty speed = new SimpleStringProperty();
 
+    private DownloadThread downloadThread;
+
 
     public FileInfo(String index, String name, String url, String status, String size, String path, String percent, String speed)
     {
@@ -23,6 +25,15 @@ public class FileInfo {
         this.path.set(path);
         this.percent.set(percent);
         this.speed.set(speed);
+        this.downloadThread = null;
+    }
+
+    public void setDownloadThread(DownloadThread downloadThread) {
+        this.downloadThread = downloadThread;
+    }
+
+    public DownloadThread getDownloadThread() {
+        return downloadThread;
     }
 
     public String getIndex()

@@ -3,7 +3,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,11 +19,15 @@ public class dmController implements Initializable{
 
     @FXML
     private Button downloadButton;
+
+    @FXML
+    private Button pauseButton;
     
     @FXML
     private TextField urlTextField;
 
     public int index = 0; //0
+    private DownloadThread currentDownloadThread;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,11 +88,38 @@ public class dmController implements Initializable{
         FileInfo file = new FileInfo((index+1) +"", filename, url, status, size, path,"0", speed); //1
         this.index = index + 1; //2
         DownloadThread thread = new DownloadThread(file, this);
+        file.setDownloadThread(thread);
         this.tableView.getItems().add(Integer.parseInt(file.getIndex()) - 1,file); //2-1 = 1
         thread.start();
         this.urlTextField.setText("");
         System.out.println("File Downloaded Successfully");
         
+    }
+
+    @FXML
+    void pauseButtonClicked(ActionEvent event)
+    {
+        FileInfo selectedFile = tableView.getSelectionModel().getSelectedItem();
+        if (selectedFile != null) {
+            currentDownloadThread = selectedFile.getDownloadThread();
+            if (currentDownloadThread != null) {
+                currentDownloadThread.pauseDownload();
+            }
+        }
+    }
+
+    @FXML
+    void resumeButtonClicked(ActionEvent event)
+    {
+        FileInfo selectedFile = tableView.getSelectionModel().getSelectedItem();
+        if(selectedFile != null)
+        {
+            currentDownloadThread = selectedFile.getDownloadThread();
+            if(currentDownloadThread != null)
+            {
+                currentDownloadThread.resumeDownload();
+            }
+        }
     }
 
     public void updateUI(FileInfo metaFile)
