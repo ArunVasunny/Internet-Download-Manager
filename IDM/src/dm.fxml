@@ -15,13 +15,13 @@
       <Button fx:id="downloadButton" layoutX="452.0" layoutY="132.0" mnemonicParsing="false" onAction="#downloadButtonClicked" text="Download" />
       <TableView fx:id="tableView" layoutX="-5.0" layoutY="192.0" prefHeight="456.0" prefWidth="856.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
-          <TableColumn prefWidth="45.0" text="S.No" />
-            <TableColumn minWidth="2.0" prefWidth="258.0" text="File Name" />
-            <TableColumn prefWidth="222.0" text="File Url" />
-            <TableColumn prefWidth="140.0" text="Status" />
-            <TableColumn minWidth="0.0" prefWidth="104.0" text="Size" />
-            <TableColumn prefWidth="86.0" text="Progress" />
-            <TableColumn prefWidth="119.0" text="Speed" />
+          <TableColumn prefWidth="39.0" text="S.No" />
+            <TableColumn minWidth="2.0" prefWidth="211.0" text="File Name" />
+            <TableColumn prefWidth="349.0" text="File Url" />
+            <TableColumn prefWidth="119.0" text="Status" />
+            <TableColumn minWidth="0.0" prefWidth="65.0" text="Size" />
+            <TableColumn prefWidth="91.0" text="Progress" />
+            <TableColumn prefWidth="100.0" text="Speed" />
         </columns>
       </TableView>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="975.0">
