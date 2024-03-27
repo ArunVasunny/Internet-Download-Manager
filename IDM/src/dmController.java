@@ -82,7 +82,7 @@ public class dmController implements Initializable{
         String filename = url.substring(url.lastIndexOf("/")+1);
         String status = "STARTING";
         String size = getSizeFromURL(url);
-        String path = location.DOWNLOAD_PATH + File.separator+filename;
+        String path = location.getDownloadPath() + File.separator+filename; //Path method
         String speed = "Calculating ...";
         FileInfo file = new FileInfo((index+1) +"", filename, url, status, size, path,"0", speed); //1
         this.index = index + 1; //2
