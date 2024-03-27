@@ -6,11 +6,17 @@ import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class dmController implements Initializable{
     
@@ -18,16 +24,11 @@ public class dmController implements Initializable{
     private TableView<FileInfo> tableView;
 
     @FXML
-    private Button downloadButton;
-
-    @FXML
     private Button pauseButton;
-    
-    @FXML
-    private TextField urlTextField;
 
     public int index = 0; //0
     private DownloadThread currentDownloadThread;
+    private AddUrlController urlController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,11 +78,9 @@ public class dmController implements Initializable{
     @FXML
     void downloadButtonClicked(ActionEvent event) {
 
-        String url = urlTextField.getText().trim();
+        String url = urlController.getUrl();
         String filename = url.substring(url.lastIndexOf("/")+1);
-        // System.out.println(filename);
         String status = "STARTING";
-        //SIZE
         String size = getSizeFromURL(url);
         String path = location.DOWNLOAD_PATH + File.separator+filename;
         String speed = "Calculating ...";
@@ -91,9 +90,25 @@ public class dmController implements Initializable{
         file.setDownloadThread(thread);
         this.tableView.getItems().add(Integer.parseInt(file.getIndex()) - 1,file); //2-1 = 1
         thread.start();
-        this.urlTextField.setText("");
         System.out.println("File Downloaded Successfully");
         
+    }
+
+    @FXML
+    void onUrl(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddURL.fxml"));
+            Parent root = loader.load();
+            AddUrlController addUrlController = loader.getController(); // Get the controller instance
+            addUrlController.setDmController(this); // Set the dmController instance in AddUrlController
+            urlController = addUrlController; // Set the urlController field in dmController
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
