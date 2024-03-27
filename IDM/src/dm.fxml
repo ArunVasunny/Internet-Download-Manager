@@ -6,13 +6,10 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="975.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dmController">
    <children>
-      <TextField fx:id="urlTextField" layoutX="125.0" layoutY="71.0" prefHeight="25.0" prefWidth="726.0" promptText="URL" />
-      <Button fx:id="downloadButton" layoutX="452.0" layoutY="132.0" mnemonicParsing="false" onAction="#downloadButtonClicked" text="Download" />
       <TableView fx:id="tableView" layoutX="-5.0" layoutY="192.0" prefHeight="456.0" prefWidth="856.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
           <TableColumn prefWidth="39.0" text="S.No" />
@@ -43,8 +40,9 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="pauseButton" layoutX="559.0" layoutY="132.0" mnemonicParsing="false" onAction="#pauseButtonClicked" text="Pause" />
-      <Button layoutX="628.0" layoutY="132.0" mnemonicParsing="false" onAction="#resumeButtonClicked" text="Resume" />
-      <Button layoutX="720.0" layoutY="132.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="pauseButton" layoutX="118.0" layoutY="107.0" mnemonicParsing="false" onAction="#pauseButtonClicked" text="Pause" />
+      <Button layoutX="189.0" layoutY="107.0" mnemonicParsing="false" onAction="#resumeButtonClicked" text="Resume" />
+      <Button layoutX="273.0" layoutY="107.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="53.0" layoutY="107.0" mnemonicParsing="false" onAction="#onUrl" text="URL" />
    </children>
 </AnchorPane>
