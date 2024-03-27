@@ -2,15 +2,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
 public class AddUrlController {
     @FXML
     private TextField textField;
     private dmController dmController;
+    private Stage stage;
 
     public void setDmController(dmController dmController) {
         this.dmController = dmController;
+    }
+
+    public void setStage(Stage stage)
+    {
+        this.stage = stage;
     }
 
     @FXML
@@ -28,8 +35,11 @@ public class AddUrlController {
         else{
             dmController.downloadButtonClicked(event);
             textField.setText("");
+            // stage.close();
+
         }    
     }
+
 
     public String getUrl()
     {

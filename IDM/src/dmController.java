@@ -106,6 +106,8 @@ public class dmController implements Initializable{
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            
+            // urlController.setStage(stage);
         } catch (Exception e) {
             e.printStackTrace();
         }
