@@ -42,7 +42,7 @@
       </MenuBar>
       <Button fx:id="pauseButton" layoutX="118.0" layoutY="107.0" mnemonicParsing="false" onAction="#pauseButtonClicked" text="Pause" />
       <Button layoutX="189.0" layoutY="107.0" mnemonicParsing="false" onAction="#resumeButtonClicked" text="Resume" />
-      <Button layoutX="273.0" layoutY="107.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="273.0" layoutY="107.0" mnemonicParsing="false" onAction="#onDelete" text="Delete" />
       <Button layoutX="53.0" layoutY="107.0" mnemonicParsing="false" onAction="#onUrl" text="URL" />
       <Button layoutX="349.0" layoutY="107.0" mnemonicParsing="false" onAction="#onBrowser" text="Browser" />
    </children>
