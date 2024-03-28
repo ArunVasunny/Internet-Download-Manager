@@ -1,5 +1,6 @@
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
@@ -23,6 +24,26 @@ public class DownloadThread extends Thread{
         this.lastUpdateTime = System.currentTimeMillis();
         this.bytesDownloaded = 0;
         
+    }
+
+    private FileOutputStream fileOutputStream;
+    private BufferedInputStream bufferedInputStream;
+
+    public void closeFile()
+    {
+        try 
+        {
+            if (fileOutputStream != null)
+            {
+                fileOutputStream.close();
+            }
+            if (bufferedInputStream != null) {
+                bufferedInputStream.close();
+            }
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void pauseDownload()
@@ -71,9 +92,9 @@ public class DownloadThread extends Thread{
             int countByte = 0;
             double percent = 0.0;
             double byteSum = 0.0;
-            BufferedInputStream bInputStream = new BufferedInputStream(url.openStream());
+            bufferedInputStream = new BufferedInputStream(url.openStream());
 
-            FileOutputStream fOutputStream = new FileOutputStream(this.file.getPath());
+            fileOutputStream = new FileOutputStream(this.file.getPath());
             byte data[] = new byte[1024];
 
             while (true) {
@@ -92,13 +113,13 @@ public class DownloadThread extends Thread{
                     }
                 }
                 
-                countByte = bInputStream.read(data,0,1024);
+                countByte = bufferedInputStream.read(data,0,1024);
                 if(countByte == -1)
                 {
                     break;
                 }
 
-                fOutputStream.write(data,0,countByte);
+                fileOutputStream.write(data,0,countByte);
 
                 byteSum = byteSum+countByte;
                 bytesDownloaded = bytesDownloaded+countByte;
@@ -122,8 +143,8 @@ public class DownloadThread extends Thread{
                 }
             }   
 
-            fOutputStream.close();
-            bInputStream.close();
+            fileOutputStream.close();
+            bufferedInputStream.close();
 
             this.setName(100 + "");
             this.file.setStatus("COMPLETED");

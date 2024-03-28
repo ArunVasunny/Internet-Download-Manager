@@ -1,8 +1,7 @@
 import javafx.beans.property.SimpleStringProperty;
 
 public class FileInfo {
-    //Initialize karna badmey
-    private SimpleStringProperty index = new SimpleStringProperty();
+
     private SimpleStringProperty name = new SimpleStringProperty();
     private SimpleStringProperty url = new SimpleStringProperty();
     private SimpleStringProperty status = new SimpleStringProperty();
@@ -15,9 +14,8 @@ public class FileInfo {
     private DownloadThread downloadThread;
 
 
-    public FileInfo(String index, String name, String url, String status, String size, String path, String percent, String speed)
+    public FileInfo(String name, String url, String status, String size, String path, String percent, String speed)
     {
-        this.index.set(index);
         this.name.set(name);
         this.url.set(url);
         this.status.set(status);
@@ -34,21 +32,6 @@ public class FileInfo {
 
     public DownloadThread getDownloadThread() {
         return downloadThread;
-    }
-
-    public String getIndex()
-    {
-        return index.get();
-    }
-
-    public SimpleStringProperty indexProperty()
-    {
-        return index;
-    }
-
-    public void setIndex(String index)
-    {
-        this.index.set(index);
     }
 
     public String getName()
@@ -152,10 +135,10 @@ public class FileInfo {
 
 
 
-    @Override 
-    public String toString() {
-        return "FileInfo [index=" + index + ", name=" + name + ", url=" + url + ", status=" + status + ", size=" + size + ", path=" + path + "percent=" + percent + "Speed= " + speed +"]";
-    }
+    // @Override 
+    // public String toString() {
+    //     return "FileInfo [name=" + name + ", url=" + url + ", status=" + status + ", size=" + size + ", path=" + path + "percent=" + percent + "Speed= " + speed +"]";
+    // }
     
         
 }

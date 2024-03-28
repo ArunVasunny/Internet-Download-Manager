@@ -12,13 +12,12 @@
    <children>
       <TableView fx:id="tableView" layoutX="-5.0" layoutY="192.0" prefHeight="456.0" prefWidth="856.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
-          <TableColumn prefWidth="39.0" text="S.No" />
-            <TableColumn minWidth="2.0" prefWidth="211.0" text="File Name" />
-            <TableColumn prefWidth="349.0" text="File Url" />
+            <TableColumn minWidth="2.0" prefWidth="186.0" text="File Name" />
+            <TableColumn prefWidth="374.0" text="File Url" />
             <TableColumn prefWidth="119.0" text="Status" />
-            <TableColumn minWidth="0.0" prefWidth="65.0" text="Size" />
-            <TableColumn prefWidth="91.0" text="Progress" />
-            <TableColumn prefWidth="100.0" text="Speed" />
+            <TableColumn minWidth="0.0" text="Size" />
+            <TableColumn prefWidth="106.0" text="Progress" />
+            <TableColumn prefWidth="108.0" text="Speed" />
         </columns>
       </TableView>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="975.0">
@@ -42,7 +41,7 @@
       </MenuBar>
       <Button fx:id="pauseButton" layoutX="118.0" layoutY="107.0" mnemonicParsing="false" onAction="#pauseButtonClicked" text="Pause" />
       <Button layoutX="189.0" layoutY="107.0" mnemonicParsing="false" onAction="#resumeButtonClicked" text="Resume" />
-      <Button layoutX="273.0" layoutY="107.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="273.0" layoutY="107.0" mnemonicParsing="false" onAction="#onDelete" text="Delete" />
       <Button layoutX="53.0" layoutY="107.0" mnemonicParsing="false" onAction="#onUrl" text="URL" />
       <Button layoutX="349.0" layoutY="107.0" mnemonicParsing="false" onAction="#onBrowser" text="Browser" />
    </children>
