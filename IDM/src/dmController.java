@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.DecimalFormat;
@@ -16,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class dmController implements Initializable{
@@ -95,9 +97,29 @@ public class dmController implements Initializable{
     }
 
     @FXML
+    void onBrowser(ActionEvent event)
+    {
+        try {
+
+            Stage browserStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLS/webview.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            browserStage.setTitle("NetPulse Browser");
+            browserStage.getIcons().add(new Image("/Images/icon.png"));
+            browserStage.setScene(scene);
+            browserStage.show();
+            browserStage.setResizable(false);
+    } catch (IOException e) {
+        e.printStackTrace();
+        // Handle exception (e.g., show an error message)
+    }
+    }
+
+    @FXML
     void onUrl(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddURL.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLS/AddURL.fxml"));
             Parent root = loader.load();
             AddUrlController addUrlController = loader.getController(); // Get the controller instance
             addUrlController.setDmController(this); // Set the dmController instance in AddUrlController
@@ -105,6 +127,7 @@ public class dmController implements Initializable{
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle("Add URL");
             stage.show();
             
             urlController.setStage(stage);
