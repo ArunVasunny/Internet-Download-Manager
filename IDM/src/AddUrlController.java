@@ -61,7 +61,7 @@ public class AddUrlController {
             dmController.downloadButtonClicked(event);
             textField.setText("");
             pathField.setText("");
-            // stage.close();
+            stage.close(); // To close url window after User downloads a file
 
         }    
     }
