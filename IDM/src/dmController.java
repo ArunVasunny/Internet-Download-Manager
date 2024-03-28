@@ -110,10 +110,11 @@ public class dmController implements Initializable{
             browserStage.setScene(scene);
             browserStage.show();
             browserStage.setResizable(false);
-    } catch (IOException e) {
-        e.printStackTrace();
-        // Handle exception (e.g., show an error message)
-    }
+        }
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -137,6 +138,25 @@ public class dmController implements Initializable{
     }
 
     @FXML
+    void onDelete(ActionEvent event)
+    {
+        FileInfo selectedFile = tableView.getSelectionModel().getSelectedItem();
+
+        if(selectedFile != null)
+        {
+            tableView.getItems().remove(selectedFile);
+        }
+        else
+        {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("No File Selected");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a file to delete");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
     void pauseButtonClicked(ActionEvent event)
     {
         FileInfo selectedFile = tableView.getSelectionModel().getSelectedItem();
@@ -145,6 +165,14 @@ public class dmController implements Initializable{
             if (currentDownloadThread != null) {
                 currentDownloadThread.pauseDownload();
             }
+        }
+        else
+        {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("No File Selected");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a file to pause");
+            alert.showAndWait();
         }
     }
 
@@ -159,6 +187,14 @@ public class dmController implements Initializable{
             {
                 currentDownloadThread.resumeDownload();
             }
+        }
+        else
+        {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("No File Selected");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a file to resume");
+            alert.showAndWait();
         }
     }
 
