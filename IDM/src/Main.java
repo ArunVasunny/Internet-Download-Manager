@@ -12,7 +12,7 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         //Fxml loading
-        Parent root = FXMLLoader.load(getClass().getResource("dm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/FXMLS/dm.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Download Manager");
         stage.setScene(scene);
