@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -28,41 +29,35 @@ public class dmController implements Initializable{
     @FXML
     private Button pauseButton;
 
-    public int index = 0; //0
     private DownloadThread currentDownloadThread;
     private AddUrlController urlController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        TableColumn<FileInfo,String> srno = (TableColumn<FileInfo,String>) this.tableView.getColumns().get(0);
-        srno.setCellValueFactory(p -> {
-            return p.getValue().indexProperty();
-        });
-
-        TableColumn<FileInfo,String> filename = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(1);
+        TableColumn<FileInfo,String> filename = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(0);
         filename.setCellValueFactory(p -> {
             return p.getValue().nameProperty();
         });
 
-        TableColumn<FileInfo,String> fileurl = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(2);
+        TableColumn<FileInfo,String> fileurl = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(1);
         fileurl.setCellValueFactory(p -> {
             return p.getValue().urlProperty();
         });
 
-        TableColumn<FileInfo,String> status = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(3);
+        TableColumn<FileInfo,String> status = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(2);
         status.setCellValueFactory(p -> {
             return p.getValue().statusProperty();
         });
 
-        TableColumn<FileInfo, String> size = (TableColumn<FileInfo, String>)this.tableView.getColumns().get(4);
+        TableColumn<FileInfo, String> size = (TableColumn<FileInfo, String>)this.tableView.getColumns().get(3);
         size.setCellValueFactory(p->{
             SimpleStringProperty simppleStringProperty = new SimpleStringProperty();
             simppleStringProperty.set(p.getValue().getSize());
             return simppleStringProperty;
         });
 
-        TableColumn<FileInfo,String> percentage = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(5);
+        TableColumn<FileInfo,String> percentage = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(4);
         percentage.setCellValueFactory(p -> {
             //To display symbol
             SimpleStringProperty simpleStringProperty = new SimpleStringProperty();
@@ -70,7 +65,7 @@ public class dmController implements Initializable{
             return simpleStringProperty;
         });
 
-        TableColumn<FileInfo,String> speed = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(6);
+        TableColumn<FileInfo,String> speed = (TableColumn<FileInfo,String>)this.tableView.getColumns().get(5);
         speed.setCellValueFactory(p -> {
             return p.getValue().speedProperty();
         });
@@ -86,11 +81,11 @@ public class dmController implements Initializable{
         String size = getSizeFromURL(url);
         String path = location.getDownloadPath() + File.separator+filename; //Path method
         String speed = "Calculating ...";
-        FileInfo file = new FileInfo((index+1) +"", filename, url, status, size, path,"0", speed); //1
-        this.index = index + 1; //2
+        FileInfo file = new FileInfo(filename, url, status, size, path,"0", speed); 
         DownloadThread thread = new DownloadThread(file, this);
         file.setDownloadThread(thread);
-        this.tableView.getItems().add(Integer.parseInt(file.getIndex()) - 1,file); //2-1 = 1
+        this.tableView.getItems().add(file);
+
         thread.start();
         System.out.println("File Downloaded Successfully");
         
@@ -142,9 +137,65 @@ public class dmController implements Initializable{
     {
         FileInfo selectedFile = tableView.getSelectionModel().getSelectedItem();
 
+
         if(selectedFile != null)
         {
-            tableView.getItems().remove(selectedFile);
+            Alert confirm = new Alert(AlertType.CONFIRMATION);
+            confirm.setTitle("Confirm Deletion");
+            confirm.setHeaderText("Are you sure you want to delete the file?");
+            confirm.setContentText("This action cannot be undone.");
+            if(confirm.showAndWait().get() == ButtonType.OK)
+            {
+                tableView.getItems().remove(selectedFile);
+                File fileToDelete = new File(selectedFile.getPath());
+                
+                System.out.println(fileToDelete);
+    
+                if(fileToDelete.exists())
+                {
+                    DownloadThread downloadThread = selectedFile.getDownloadThread();
+                    if (downloadThread != null) {
+                        downloadThread.closeFile();
+                    }
+                    try
+                    {
+                        if(fileToDelete.delete())
+                        {
+                            Alert alert = new Alert(AlertType.INFORMATION);
+                            alert.setTitle("File Deleted");
+                            alert.setHeaderText(null);
+                            alert.setContentText("The selected file has been deleted successfully");
+                            alert.showAndWait();
+                        }
+                        else
+                        {
+                            Alert alert = new Alert(AlertType.ERROR);
+                            alert.setTitle("Deletetion Error");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Failed to delete the file");
+                            alert.showAndWait();
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        ex.printStackTrace();
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setTitle("Deletion Error");
+                        alert.setHeaderText(null);
+                        alert.setContentText("An error occurred while deleting the file: " + ex.getMessage());
+                        alert.showAndWait();
+                    }
+                }
+                else
+                {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Deletion Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("The file does not exist at the specified path: " + fileToDelete.getAbsolutePath());
+                    alert.showAndWait();
+                }
+            }
+
         }
         else
         {
@@ -200,12 +251,11 @@ public class dmController implements Initializable{
 
     public void updateUI(FileInfo metaFile)
     {
-        FileInfo fileInfo = this.tableView.getItems().get(Integer.parseInt(metaFile.getIndex())-1); //1-1 = 0
-        fileInfo.setStatus(metaFile.getStatus());
+        metaFile.setStatus(metaFile.getStatus());
         DecimalFormat decimcalFormat = new DecimalFormat("0.0");
-        fileInfo.setPercent(decimcalFormat.format(Double.parseDouble(metaFile.getPercent())));
+        metaFile.setPercent(decimcalFormat.format(Double.parseDouble(metaFile.getPercent())));
         this.tableView.refresh();
-        System.out.println(metaFile);
+        // System.out.println(metaFile);
     }
 
     public String getSizeFromURL(String url) {
