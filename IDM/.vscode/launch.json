@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ConnectionClass",
+            "request": "launch",
+            "mainClass": "ConnectionClass",
+            "projectName": "IDM_8a9fe8ef"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
