@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -70,6 +71,12 @@ public class dmController implements Initializable{
             return p.getValue().speedProperty();
         });
 
+        List<FileInfo> data = ConnectionClass.getAllFiles();
+        tableView.getItems().addAll(data);
+
+        tableView.setStyle("-fx-focus-color: transparent");
+        
+
     }
     
     @FXML
@@ -85,7 +92,7 @@ public class dmController implements Initializable{
         DownloadThread thread = new DownloadThread(file, this);
         file.setDownloadThread(thread);
         this.tableView.getItems().add(file);
-
+        ConnectionClass.insert(file);
         thread.start();
         System.out.println("File Downloaded Successfully");
         
@@ -166,6 +173,7 @@ public class dmController implements Initializable{
                             alert.setHeaderText(null);
                             alert.setContentText("The selected file has been deleted successfully");
                             alert.showAndWait();
+                            ConnectionClass.delete(selectedFile);
                         }
                         else
                         {
@@ -193,6 +201,7 @@ public class dmController implements Initializable{
                     alert.setHeaderText(null);
                     alert.setContentText("The file does not exist at the specified path: " + fileToDelete.getAbsolutePath());
                     alert.showAndWait();
+                    ConnectionClass.delete(selectedFile);
                 }
             }
 
@@ -215,6 +224,7 @@ public class dmController implements Initializable{
             currentDownloadThread = selectedFile.getDownloadThread();
             if (currentDownloadThread != null) {
                 currentDownloadThread.pauseDownload();
+                ConnectionClass.update(selectedFile); //Updates file when download is paused
             }
         }
         else
@@ -255,6 +265,7 @@ public class dmController implements Initializable{
         DecimalFormat decimcalFormat = new DecimalFormat("0.0");
         metaFile.setPercent(decimcalFormat.format(Double.parseDouble(metaFile.getPercent())));
         this.tableView.refresh();
+        // ConnectionClass.update(metaFile);
         // System.out.println(metaFile);
     }
 

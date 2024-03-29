@@ -155,6 +155,7 @@ public class DownloadThread extends Thread{
         }
 
         this.file.setSpeed("0");
+        ConnectionClass.update(file); //This will update file when the download gets complete
         this.manager.updateUI(file);
 
     }  
