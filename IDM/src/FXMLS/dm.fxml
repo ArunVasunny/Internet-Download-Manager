@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="975.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dmController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="975.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dmController">
    <children>
       <TableView fx:id="tableView" layoutX="-5.0" layoutY="192.0" prefHeight="456.0" prefWidth="856.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
@@ -20,17 +20,17 @@
             <TableColumn prefWidth="108.0" text="Speed" />
         </columns>
       </TableView>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="975.0">
+      <MenuBar layoutY="2.0" prefHeight="16.0" prefWidth="975.0" styleClass="menuBar">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" styleClass="menu" text="File">
             <items>
-              <MenuItem fx:id="addUrlMenuItem" mnemonicParsing="false" onAction="#onAddUrlClicked" text="Add URL" />
+              <MenuItem fx:id="addUrlMenuItem" mnemonicParsing="false" onAction="#onAddUrlClicked" styleClass="menuItem" text="Add URL" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" styleClass="menu" text="Help">
             <items>
-              <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#onAboutClicked" text="About" />
-                  <MenuItem fx:id="disclaimerMenuItem" mnemonicParsing="false" onAction="#onDisclaimerClicked" text="Disclaimer" />
+              <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#onAboutClicked" styleClass="menuItem" text="About" />
+                  <MenuItem fx:id="disclaimerMenuItem" mnemonicParsing="false" onAction="#onDisclaimerClicked" styleClass="menuItem" text="Disclaimer" />
             </items>
           </Menu>
         </menus>
@@ -38,7 +38,7 @@
       <Button fx:id="pauseButton" layoutX="118.0" layoutY="107.0" mnemonicParsing="false" onAction="#pauseButtonClicked" text="Pause" />
       <Button layoutX="189.0" layoutY="107.0" mnemonicParsing="false" onAction="#resumeButtonClicked" text="Resume" />
       <Button layoutX="273.0" layoutY="107.0" mnemonicParsing="false" onAction="#onDelete" text="Delete" />
-      <Button layoutX="53.0" layoutY="107.0" mnemonicParsing="false" onAction="#onUrl" text="URL" />
+      <Button id="url" layoutX="53.0" layoutY="107.0" mnemonicParsing="false" onAction="#onUrl" text="URL" />
       <Button layoutX="349.0" layoutY="107.0" mnemonicParsing="false" onAction="#onBrowser" text="Browser" />
    </children>
 </AnchorPane>
