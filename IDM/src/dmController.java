@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -29,6 +30,15 @@ public class dmController implements Initializable{
 
     @FXML
     private Button pauseButton;
+
+    @FXML
+    private MenuItem addUrlMenuItem;
+
+    @FXML
+    private MenuItem aboutMenuItem;
+
+    @FXML
+    private MenuItem disclaimerMenuItem;
 
     private DownloadThread currentDownloadThread;
     private AddUrlController urlController;
@@ -285,11 +295,37 @@ public class dmController implements Initializable{
     {
         if (size <= 0)
         {
-            return "0 B";
+            return "File size not available";
         }
         final String[] units = new String[]{"B", "KB", "MB", "GB", "TB"};
         int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
         return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
     }
+
+        //Menu item event handlers
+        @FXML
+        void onAboutClicked(ActionEvent event) {
+            // Display information about the download manager
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("About");
+            alert.setHeaderText(null);
+            alert.setContentText("Download Manager is developed by Arun Vasunny.\nThis download manager allows you to easily download files from the internet, it is a tool for managing and monitoring downloads.");
+            alert.showAndWait();
+        }
+    
+        @FXML
+        void onAddUrlClicked(ActionEvent event) {
+            onUrl(event);
+        }
+    
+        @FXML
+        void onDisclaimerClicked(ActionEvent event) {
+            // Display a disclaimer message regarding piracy
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Disclaimer");
+            // alert.setHeaderText("Disclaimer Regarding Piracy");
+            alert.setContentText("We do not support or condone piracy.\nDownloading and distributing copyrighted material without authorization is illegal, and we do not condone or support such activities.\nWe are not responsible for any misuse of this software.\nPlease use this download manager responsibly.");
+            alert.showAndWait();
+        }
 
 }
