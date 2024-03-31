@@ -157,6 +157,7 @@ public class dmController implements Initializable{
             urlController = addUrlController; // Set the urlController field in dmController
             Stage stage = new Stage();
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/CSS/addurl.css").toExternalForm());
             stage.setScene(scene);
             stage.setTitle("Add URL");
             stage.show();
