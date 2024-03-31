@@ -134,6 +134,7 @@ public class dmController implements Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLS/webview.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/CSS/web.css").toExternalForm());
             browserStage.setTitle("NetPulse Browser");
             browserStage.getIcons().add(new Image("/Images/icon.png"));
             browserStage.setScene(scene);
