@@ -1,6 +1,5 @@
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;

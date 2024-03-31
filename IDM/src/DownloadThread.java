@@ -3,10 +3,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.DecimalFormat;
 
 public class DownloadThread extends Thread{
 
@@ -66,19 +62,6 @@ public class DownloadThread extends Thread{
     {
         this.file.setStatus("DOWNLOADING");
         this.manager.updateUI(file);
-
-        //Dont forget to handle file already exists
-
-        // String downloadPath = file.getPath();
-        // Path path = Paths.get(downloadPath);
-        // if (Files.exists(path)) {
-        //     // File already exists, handle this situation accordingly
-        //     System.out.println("File already exists: " + downloadPath);
-        //     file.setStatus("FAILED"); // Update file status to indicate failure
-        //     manager.updateUI(file); // Update UI to reflect the status change
-        //     return; // Exit run() method
-        // }
-
         //Download logic
         try {
             // We cant retrieve Download infomation using this method so ill implement an alternate method
