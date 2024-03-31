@@ -62,7 +62,7 @@ public class WebController implements Initializable{
         imgView.setFitHeight(height);
         imgView.setFitWidth(width);
         button.setGraphic(imgView);
-        button.setStyle("-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 50%; -fx-border-color: white;");
+        button.setStyle("-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 50%; -fx-border-color: white; ");
     }
 
     public void loadPage()
