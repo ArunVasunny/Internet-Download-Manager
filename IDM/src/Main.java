@@ -14,7 +14,7 @@ public class Main extends Application{
         //Fxml loading
         Parent root = FXMLLoader.load(getClass().getResource("/FXMLS/dm.fxml"));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/CSS/styles.css").toExternalForm());
 
         stage.setTitle("Download Manager");
         stage.setScene(scene);
