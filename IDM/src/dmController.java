@@ -21,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class dmController implements Initializable{
@@ -30,6 +31,14 @@ public class dmController implements Initializable{
 
     @FXML
     private Button pauseButton;
+    @FXML
+    private Button urlButton;
+    @FXML
+    private Button resumeButton;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Button browserButton;
 
     @FXML
     private MenuItem addUrlMenuItem;
@@ -42,6 +51,7 @@ public class dmController implements Initializable{
 
     private DownloadThread currentDownloadThread;
     private AddUrlController urlController;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,6 +95,13 @@ public class dmController implements Initializable{
         tableView.getItems().addAll(data);
 
         tableView.setStyle("-fx-focus-color: transparent");
+
+        setButtonImage(urlButton, "/Images/link.png", 22.0, 22.0);
+        setButtonImage(pauseButton, "/Images/pause.png", 22.0, 22.0);
+        setButtonImage(resumeButton, "/Images/play.png", 22.0, 22.0);
+        setButtonImage(deleteButton, "/Images/delete.png", 22.0, 22.0);
+        setButtonImage(browserButton, "/Images/internet.png", 22.0, 22.0);
+
         
 
     }
@@ -234,7 +251,7 @@ public class dmController implements Initializable{
             currentDownloadThread = selectedFile.getDownloadThread();
             if (currentDownloadThread != null) {
                 currentDownloadThread.pauseDownload();
-                ConnectionClass.update(selectedFile); //Updates file when download is paused
+                ConnectionClass.update(selectedFile); //Updates file when download is paused 
             }
         }
         else
@@ -303,29 +320,38 @@ public class dmController implements Initializable{
     }
 
         //Menu item event handlers
-        @FXML
-        void onAboutClicked(ActionEvent event) {
-            // Display information about the download manager
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("About");
-            alert.setHeaderText(null);
-            alert.setContentText("Download Manager is developed by Arun Vasunny.\nThis download manager allows you to easily download files from the internet, it is a tool for managing and monitoring downloads.");
-            alert.showAndWait();
-        }
+    @FXML
+    void onAboutClicked(ActionEvent event) {
+        // Display information about the download manager
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText(null);
+        alert.setContentText("Download Manager is developed by Arun Vasunny.\nThis download manager allows you to easily download files from the internet, it is a tool for managing and monitoring downloads.");
+        alert.showAndWait();
+    }
+
+    @FXML
+    void onAddUrlClicked(ActionEvent event) {
+        onUrl(event);
+    }
     
-        @FXML
-        void onAddUrlClicked(ActionEvent event) {
-            onUrl(event);
-        }
-    
-        @FXML
-        void onDisclaimerClicked(ActionEvent event) {
-            // Display a disclaimer message regarding piracy
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Disclaimer");
-            // alert.setHeaderText("Disclaimer Regarding Piracy");
-            alert.setContentText("We do not support or condone piracy.\nDownloading and distributing copyrighted material without authorization is illegal, and we do not condone or support such activities.\nWe are not responsible for any misuse of this software.\nPlease use this download manager responsibly.");
-            alert.showAndWait();
-        }
+    @FXML
+    void onDisclaimerClicked(ActionEvent event) {
+        // Display a disclaimer message regarding piracy
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Disclaimer");
+        // alert.setHeaderText("Disclaimer Regarding Piracy");
+        alert.setContentText("We do not support or condone piracy.\nDownloading and distributing copyrighted material without authorization is illegal, and we do not condone or support such activities.\nWe are not responsible for any misuse of this software.\nPlease use this download manager responsibly.");
+        alert.showAndWait();
+    }
+
+    public void setButtonImage(Button button, String imgPath, Double width, Double height)
+    {
+        ImageView imgView = new ImageView(new Image(getClass().getResourceAsStream(imgPath)));
+        imgView.setFitHeight(height);
+        imgView.setFitWidth(width);
+        button.setGraphic(imgView);
+        button.setStyle("-fx-background-color: transparent; -fx-border-width: 1.5px; -fx-border-radius: 80px; -fx-border-color: white; -fx-text-fill: white");
+    }
 
 }
