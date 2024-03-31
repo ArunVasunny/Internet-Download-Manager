@@ -8,19 +8,19 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="975.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dmController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dmController">
    <children>
       <TableView fx:id="tableView" layoutX="-5.0" layoutY="192.0" prefHeight="456.0" prefWidth="856.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
             <TableColumn minWidth="2.0" prefWidth="186.0" text="File Name" />
-            <TableColumn prefWidth="374.0" text="File Url" />
+            <TableColumn prefWidth="385.0" text="File Url" />
             <TableColumn prefWidth="119.0" text="Status" />
-            <TableColumn minWidth="0.0" text="Size" />
-            <TableColumn prefWidth="106.0" text="Progress" />
-            <TableColumn prefWidth="108.0" text="Speed" />
+            <TableColumn minWidth="0.0" prefWidth="92.0" text="Size" />
+            <TableColumn prefWidth="110.0" text="Progress" />
+            <TableColumn prefWidth="106.0" text="Speed" />
         </columns>
       </TableView>
-      <MenuBar layoutY="2.0" prefHeight="16.0" prefWidth="975.0" styleClass="menuBar">
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1000.0" styleClass="menuBar">
         <menus>
           <Menu mnemonicParsing="false" styleClass="menu" text="File">
             <items>
@@ -35,10 +35,10 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="pauseButton" layoutX="118.0" layoutY="107.0" mnemonicParsing="false" onAction="#pauseButtonClicked" text="Pause" />
-      <Button layoutX="189.0" layoutY="107.0" mnemonicParsing="false" onAction="#resumeButtonClicked" text="Resume" />
-      <Button layoutX="273.0" layoutY="107.0" mnemonicParsing="false" onAction="#onDelete" text="Delete" />
-      <Button id="url" layoutX="53.0" layoutY="107.0" mnemonicParsing="false" onAction="#onUrl" text="URL" />
-      <Button layoutX="349.0" layoutY="107.0" mnemonicParsing="false" onAction="#onBrowser" text="Browser" />
+      <Button fx:id="pauseButton" layoutX="300.0" layoutY="100.0" mnemonicParsing="false" onAction="#pauseButtonClicked" prefHeight="35.0" prefWidth="109.0" text="Pause" />
+      <Button fx:id="resumeButton" layoutX="450.0" layoutY="100.0" mnemonicParsing="false" onAction="#resumeButtonClicked" prefHeight="35.0" prefWidth="109.0" text="Resume" />
+      <Button fx:id="deleteButton" layoutX="600.0" layoutY="100.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="35.0" prefWidth="109.0" text="Delete" />
+      <Button id="url" fx:id="urlButton" layoutX="150.0" layoutY="100.0" mnemonicParsing="false" onAction="#onUrl" prefHeight="35.0" prefWidth="109.0" text="URL" />
+      <Button fx:id="browserButton" layoutX="750.0" layoutY="100.0" mnemonicParsing="false" onAction="#onBrowser" prefHeight="35.0" prefWidth="109.0" text="Browser" />
    </children>
 </AnchorPane>
