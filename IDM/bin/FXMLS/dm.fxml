@@ -35,10 +35,10 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="pauseButton" layoutX="300.0" layoutY="100.0" mnemonicParsing="false" onAction="#pauseButtonClicked" prefHeight="35.0" prefWidth="109.0" text="Pause" />
-      <Button fx:id="resumeButton" layoutX="450.0" layoutY="100.0" mnemonicParsing="false" onAction="#resumeButtonClicked" prefHeight="35.0" prefWidth="109.0" text="Resume" />
-      <Button fx:id="deleteButton" layoutX="600.0" layoutY="100.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="35.0" prefWidth="109.0" text="Delete" />
-      <Button id="url" fx:id="urlButton" layoutX="150.0" layoutY="100.0" mnemonicParsing="false" onAction="#onUrl" prefHeight="35.0" prefWidth="109.0" text="URL" />
-      <Button fx:id="browserButton" layoutX="750.0" layoutY="100.0" mnemonicParsing="false" onAction="#onBrowser" prefHeight="35.0" prefWidth="109.0" text="Browser" />
+      <Button fx:id="pauseButton" layoutX="295.0" layoutY="100.0" mnemonicParsing="false" onAction="#pauseButtonClicked" prefHeight="35.0" prefWidth="110.0" styleClass="buttons" text="Pause" />
+      <Button fx:id="resumeButton" layoutX="445.0" layoutY="100.0" mnemonicParsing="false" onAction="#resumeButtonClicked" prefHeight="35.0" prefWidth="110.0" styleClass="buttons" text="Resume" />
+      <Button fx:id="deleteButton" layoutX="595.0" layoutY="100.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="35.0" prefWidth="110.0" styleClass="buttons" text="Delete" />
+      <Button fx:id="urlButton" layoutX="145.0" layoutY="100.0" mnemonicParsing="false" onAction="#onUrl" prefHeight="35.0" prefWidth="110.0" styleClass="buttons" text="URL" />
+      <Button fx:id="browserButton" layoutX="745.0" layoutY="100.0" mnemonicParsing="false" onAction="#onBrowser" prefHeight="35.0" prefWidth="110.0" styleClass="buttons" text="Browser" />
    </children>
 </AnchorPane>
