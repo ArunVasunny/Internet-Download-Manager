@@ -110,6 +110,7 @@ public class dmController implements Initializable{
 
         String url = urlController.getUrl();
         String filename = url.substring(url.lastIndexOf("/")+1);
+        // filename = filename.replaceAll("[^a-zA-Z0-9.-]", "_");
         String status = "STARTING";
         String size = getSizeFromURL(url);
         String path = location.getDownloadPath() + File.separator+filename; //Path method
