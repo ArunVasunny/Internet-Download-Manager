@@ -64,13 +64,33 @@ public class WebController implements Initializable{
         button.setStyle("-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 50%; -fx-border-color: white; ");
     }
 
-    public void loadPage()
-    {
+    public void loadPage() {
         loadingProgress();
-        String url = ("https://www."+textField.getText()+".com");
+        String url = textField.getText().trim();
+    
+        if (!url.isEmpty()) {
+            if (url.startsWith("https://") && (url.endsWith(".com") || url.endsWith(".org") || url.endsWith(".in") || url.endsWith(".to"))) 
+            {
+                webEngine.load(url);
+            } 
+            else if (url.endsWith(".com") || url.endsWith(".org") || url.endsWith(".in") || url.endsWith(".to")) 
+            {
+                url = "https://" + url;
+                webEngine.load(url);
+            } 
+            else 
+            {
+                url = "https://" + url + ".com";
+                webEngine.load(url);
+            }
+        } 
+        else 
+        {
+            System.out.println("Please enter a URL.");
+        }
         System.out.println(url);
-        webEngine.load(url);
     }
+    
 
     //display loading progress of a website
     public void loadingProgress()
