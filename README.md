@@ -22,9 +22,9 @@ in the realm of file downloads, catering to the needs of discerning users seekin
 streamlined download experience.
 
 # Technology used
-*Java
-*JavaFX
-*JDBC
-*MySQL
+* Java
+* JavaFX
+* JDBC
+* MySQL
 
 # Output
