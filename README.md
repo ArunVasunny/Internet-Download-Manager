@@ -34,9 +34,6 @@ streamlined download experience.
 ![image](https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/80fbda07-f82d-466b-bbae-69dcee588ceb)
 ![image](https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/5ccd9763-02c3-4bd0-a96a-005636c6ecdb)
 
-
-
 # Working
-<p align="center">
-  https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/cf0e79ae-5995-4a84-be04-691be582c3b8
-</p>
+https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/cf0e79ae-5995-4a84-be04-691be582c3b8
+
