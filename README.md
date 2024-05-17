@@ -21,10 +21,10 @@ essence, while browsers excel at web browsing, IDM stands as a beacon of efficie
 in the realm of file downloads, catering to the needs of discerning users seeking a seamless and 
 streamlined download experience.
 
-#Technology used
+# Technology used
 *Java
 *JavaFX
 *JDBC
 *MySQL
 
-#Output
+# Output
