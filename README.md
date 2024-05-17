@@ -28,4 +28,15 @@ streamlined download experience.
 * MySQL
 
 # Output
-https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/cf0e79ae-5995-4a84-be04-691be582c3b8
+![image](https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/406921bc-d680-4796-859f-12f8538493c3)
+![image](https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/24aa46cb-266c-4f11-a1af-ab8c8bfda35e)
+![image](https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/7a1334b0-0fbf-4541-9c42-a4ae127e3da5)
+![image](https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/80fbda07-f82d-466b-bbae-69dcee588ceb)
+![image](https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/5ccd9763-02c3-4bd0-a96a-005636c6ecdb)
+
+
+
+# Working
+<p align="center">
+  https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/cf0e79ae-5995-4a84-be04-691be582c3b8
+</p>
