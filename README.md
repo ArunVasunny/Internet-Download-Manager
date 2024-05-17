@@ -28,3 +28,4 @@ streamlined download experience.
 * MySQL
 
 # Output
+https://github.com/ArunVasunny/Internet-Download-Manager/assets/95523309/cf0e79ae-5995-4a84-be04-691be582c3b8
